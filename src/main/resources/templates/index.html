@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO-->
+
+
+        <table>
+            <tr th:each="eletros: ${eletrosList}" th:if="${eletros.deletado == null}">
+            <td th:text="${eletros.id}"></td>
+            <td th:text="${eletros.tipo}"></td>
+            <td th:text="${eletros.preco}"></td>
+            <td th:text="${eletros.marca}"></td>
+            <td th:text="${eletros.descricao}"></td>
+            <td><a th:href="@{'doDeletar/' + ${eletros.id}}">Deletar</a></td>
+            <td><a th:href="@{'editarPage/' + ${eletros.id}}">Editar</a></td>
+            </tr>
+        </table>
+
+<h2> Cadastre <a th:href="@{doCadastrar}">aqui</a> </h2>
+
+</body>
+</html>

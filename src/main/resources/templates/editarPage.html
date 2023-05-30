@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+    <form method="post" th:action="@{/doSalvar}" th:object="${eletros}">
+
+        <input type="hidden" th:field="*{id}">
+
+        Tipo: <input type="text" th:field="*{tipo}">
+        <br />
+
+        Preço: <input type="number" th:field="*{preco}">
+        <br />
+
+        Marca: <input type="text" th:field="*{marca}">
+        <br />
+
+        Descrição: <input type="text" th:field="*{descricao}">
+            <br />
+        <button type ="submit">Editar</button>
+
+    </form>
+</body>
+</html>

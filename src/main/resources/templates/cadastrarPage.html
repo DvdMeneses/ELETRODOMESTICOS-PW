@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina de Cadastro</title>
+    
+    
+</head>
+<body>
+<h1>Cadastrar Eletrodomestico</h1>
+    <form method ="post" th:action="@{/doSalvar}" th:object="${eletros}">
+
+        Tipo: <input type="text" th:field="*{tipo}">
+        <p th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></p>
+        <br />
+
+        Preço: <input type="text" th:field="*{preco}">
+        <p th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></p>
+        <br />
+
+        Marca: <input type="text" th:field="*{marca}">
+        <p th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></p>
+        <br />
+
+        Descrição: <input type="text" th:field="*{descricao}">
+        <p th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></p>
+        <br />
+
+
+        <br />
+
+        <button type ="submit">Cadastrar</button>
+
+    </form>
+
+</body>
+</html>

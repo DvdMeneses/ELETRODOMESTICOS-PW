@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+<!-- CODIGO HTML DO HEADER  -->
+
+<header id="header-top" th:fragment="header">
+    <section id="header-top__logo">
+        <img src=# alt="Digital Store" title="Logomarca do sistema"/>
+    </section>
+    <section id="header-top__search">
+        <form action="#" method="get">
+            <input type="text" name="s" placeholder="Pesquisar produto..."/>
+            <button>
+                <img src=# alt="Lupa" title="Pesquisar"/>
+            </button>
+        </form>
+    </section>
+    <section id="header-top__links">
+        <a href="#">Cadastre-se</a>
+        <a href="#">Entrar</a>
+    </section>
+    <section id="header-top__cart">
+        <a href="#" data-value="2">
+            <img th:src="@{../static/images/cart.png}" alt="Carrinho" title="Carrinho" src="/images/cart.png"/>
+        </a>
+    </section>
+</header>
+
+<!-- CODIGO HTML DO BANNER  -->
+
+
+
+
+
+<!-- CODIGO HTML DO EM ALTA  -->
+
+<section th:fragment="Emalta(img)" id="EmAlta">
+    <div id="title">
+        <h1>Produtos em alta</h1>
+        <a className="link" href="#">Ver todos  -></a>
+    </div>
+
+    <section id="items">
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+        </div>
+    </section>
+</section>
+
+
+
+
+<!-- CODIGO HTML DO ITEM DO EM ALTA  -->
+
+<div th:fragment="item(img)" id="item">
+    <div id="boxImage discount" data-discount="30% OFF">
+        <img th:src="${img}"  alt="Emalta">
+    </div>
+    <span id="category">Tênis</span>
+    <h2 id="productName">K-Swiss V8 - Masculino</h2>
+    <div id="price">
+        <h3>$200</h3>
+        <h3>$100</h3>
+    </div>
+</div>
+
+
+<!-- CODIGO HTML DO FOOTER  -->
+
+<footer th:fragment="footer" id="container-footer">
+
+    <div id="container-columns">
+        <div id="column1">
+            <div id="digital-store">
+                <img id="logo-footer" src="#"/>
+                <h1>Digital Store</h1>
+            </div>
+            <div id="footer-lorem">
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore.</span>
+            </div>
+            <div id="social-media">
+                <a><img src="#" /></a>
+                <a><img src="#" /></a>
+                <a><img src="#" /> </a>
+            </div>
+        </div>
+        <div id="column2">
+            <h4>Informação</h4>
+            <a>Sobre Drip Store</a>
+            <a>Segurança</a>
+            <a>Wishlist</a>
+            <a>Blog</a>
+            <a>Trabalhe Conosco</a>
+            <a>Meus Pedidos</a>
+        </div>
+        <div id="column3">
+            <h4>Categorias</h4>
+            <a>Camisetas</a>
+            <a>Calças</a>
+            <a>Bonés</a>
+            <a>Headphones</a>
+            <a>Tênis</a>
+        </div>
+        <div id="column4">
+            <h4>Contato</h4>
+            <p>Av. Santos Dumont, 1510 - 1 andar - Aldeota, Fortaleza - CE, 60150-161</p>
+            <span>(85) 3051-3411</span>
+        </div>
+    </div>
+    <div id="footer-bottom">
+        <div></div>
+        <span>@ 2022 Digital College</span>
+    </div>
+
+</footer>
+
+
+<div th:fragment="menu(username)">
+    <p th:text="${username}"></p>
+</div>
+
+<div th:fragment="statusCadastro(status)">
+    <p th:switch="${status}">
+        <span th:case="'CADASTRADO'">CADASTRADO</span>
+        <span th:case="1">ALTERADO</span>
+        <span th:case="'EXCLUIDO'">EXCLUIDO</span>
+        <span th:case="*">CANCELADO</span>
+    </p>
+</div>
+
+<div th:fragment="statusUsuario(status)">
+    <p>
+        <span th:if="${status == 'NOVO'}">Bem vindo</span>
+        <span th:unless="${status == 'NOVO'}">Voltou!</span>
+    </p>
+</div>
+
+<div th:fragment="displayNome(nome)">
+    <p th:text="${nome} ?: 'ANÔNIMO'"></p>
+</div>
+
+</body>
+</html>
