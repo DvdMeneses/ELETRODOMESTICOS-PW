@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Cadastrar Eletrodomestico</h1>
-    <form method ="post" th:action="@{/doSalvar}" th:object="${eletros}">
+    <form method ="post" th:action="@{/doSalvar}" th:object="${eletros}" enctype="multipart/form-data">
 
         Tipo: <input type="text" th:field="*{tipo}">
         <p th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></p>
@@ -25,6 +25,9 @@
         Descrição: <input type="text" th:field="*{descricao}">
         <p th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></p>
         <br />
+
+        Imagem:  Foto: <input type="file" name="file">
+
 
 
         <br />

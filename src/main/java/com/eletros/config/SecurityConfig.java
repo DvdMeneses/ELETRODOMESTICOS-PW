@@ -18,8 +18,7 @@ public class SecurityConfig{
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/cadastrarPage").hasRole("ADMIN");
-                    auth.requestMatchers("/editarPage/**").hasRole("USER");
+
                     auth.anyRequest().permitAll();
                 })
                 .formLogin( login -> login.loginPage("/login").permitAll())

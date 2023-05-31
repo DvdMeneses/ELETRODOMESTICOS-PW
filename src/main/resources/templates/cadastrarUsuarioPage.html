@@ -14,8 +14,8 @@
         <p th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></p>
         <br />
 
-        isAdmin: <input type="text" th:field="*{isadmin}">
-        <p th:if="${#fields.hasErrors('isadmin')}" th:errors="*{isadmin}"></p>
+        <input type="radio" th:field="*{isadmin}" value="true"> Sim
+        <input type="radio" th:field="*{isadmin}" value="false" th:checked="true"> Não
         <br />
 
         <button type ="submit">Cadastrar</button>
