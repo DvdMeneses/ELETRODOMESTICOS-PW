@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO-->
+<!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO ISSO É PARA O ADMIN -->
 
 
         <table>
@@ -17,8 +17,9 @@
             <td th:text="${eletros.preco}"></td>
             <td th:text="${eletros.marca}"></td>
             <td th:text="${eletros.descricao}"></td>
-            <td><a th:href="@{'doDeletar/' + ${eletros.id}}">Deletar</a></td>
-            <td><a th:href="@{'editarPage/' + ${eletros.id}}">Editar</a></td>
+            <td><img th:src="@{'/images/img-uploads/'+*{eletros.imageUri}}"></td>
+            <td><a  th:href="@{'doDeletar/' + ${eletros.id}}">Deletar</a></td>
+            <td ><a th:href="@{'editarPage/' + ${eletros.id}}"  >Editar</a></td>
             </tr>
         </table>
 
