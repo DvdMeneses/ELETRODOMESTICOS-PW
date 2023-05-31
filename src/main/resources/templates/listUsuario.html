@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar todos os Usuarios</title>
+</head>
+<body>
+
+  <table>
+    <tr th:each="Usuario: ${usuarioList}">
+      <td th:text="${Usuario.id}"></td>
+      <td th:text="${Usuario.login}"></td>
+      <td th:text="${Usuario.senha}"></td>
+      <td th:text="${Usuario.isadmin}"></td>
+    </tr>
+  </table>
+</body>
+</html>
