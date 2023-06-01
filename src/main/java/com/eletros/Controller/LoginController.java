@@ -53,6 +53,8 @@ public class LoginController {
                      System.out.println("CERTIN");
                      return "redirect:/indexAdmin";
 
+                 }else{
+                     return "redirect:/index";
                  }
              }
 

@@ -3,7 +3,9 @@ package com.eletros.Controller;
 import com.eletros.Model.Eletros;
 import com.eletros.Service.EletrosService;
 import com.eletros.Service.FileStorageService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class EletrosController {
@@ -62,8 +66,9 @@ public class EletrosController {
 
 
     @PostMapping("/doSalvar")
-    public String doSalvar(@ModelAttribute @Valid Eletros e, @RequestParam(name = "file") MultipartFile file, Errors errors) {
+    public String doSalvar(@ModelAttribute @Valid Eletros e, @RequestParam(name = "file") MultipartFile file, Errors errors, RedirectAttributes x) {
         if (errors.hasErrors()) {
+            x.addFlashAttribute("mensagem","Não foi possivel salvar :(");
             return "cadastrarPage";
         } else {
 
@@ -71,6 +76,7 @@ public class EletrosController {
             e.setImageUri(fileName );
             this.fileStorageService.save(file);
             service.save(e);
+            x.addFlashAttribute("mensagem","salvo com sucesso!");
             return "redirect:/adminPage";
         }
     }
@@ -78,11 +84,13 @@ public class EletrosController {
 
 
     @GetMapping("/editarPage/{id}")
-    public String getEditarPage(@PathVariable (name = "id") String id, Model model){
+    public String getEditarPage(@PathVariable (name = "id") String id, Model model, RedirectAttributes x){
         Optional<Eletros> E = service.findById(id);
         System.out.println(E.getClass());
             if (E.isPresent()) {
                 model.addAttribute("eletros", E.get());
+                x.addFlashAttribute("mensagem","Não foi possivel salvar :(");
+
             }
 
             return "editarPage";
@@ -161,7 +169,21 @@ public class EletrosController {
     }
 
 
+    @GetMapping("/doCookie")
+    public String criarCookie(HttpServletResponse response, Model model){
+        Date dataHoraAcesso = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String valorCookie = formatter.format(dataHoraAcesso);
 
+
+        Cookie cookie = new Cookie("visita", valorCookie);
+        cookie.setMaxAge(24 * 60 * 60);
+        response.addCookie(cookie);
+
+        model.addAttribute("cookieValue", valorCookie);
+
+        return "redirect:/index";
+    }
 
 
 }
