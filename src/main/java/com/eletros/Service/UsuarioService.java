@@ -25,6 +25,9 @@ public class UsuarioService implements UserDetailsService {
         u.setSenha(encoder.encode(u.getPassword()));
         this.repository.save(u);
     }
+
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -35,6 +38,11 @@ public class UsuarioService implements UserDetailsService {
             throw new UsernameNotFoundException("Username not found");
         }
 
+    }
+
+    public Usuario getUsuarioByLogin(String username){
+        Usuario user = repository.getUsuarioByLogin(username);
+        return user;
     }
     public List<Usuario> listAll(){
         return  repository.findAll();

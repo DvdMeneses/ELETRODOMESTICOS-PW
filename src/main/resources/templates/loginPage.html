@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <link th:href="@{'/css/estilos.css'}" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="/fragments/commons :: header-notSearch(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login')"></div>
+
+<p th:text="${mensagem}"></p>
+
 <form th:action="@{/validar}" method="post">
   <input type="text" name="username" placeholder="Username">
   <input type="password" name="password" placeholder="Password">

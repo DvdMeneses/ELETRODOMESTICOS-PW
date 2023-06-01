@@ -4,28 +4,35 @@
 
 
 <!-- CODIGO HTML DO HEADER  -->
-
-<header id="header-top" th:fragment="header">
+<header id="header-top" th:fragment="header(foto1,foto2,foto3,cont,link1,link2,link3)">
     <section id="header-top__logo">
-        <img src=# alt="Digital Store" title="Logomarca do sistema"/>
+        <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="Logomarca do sistema" />
     </section>
     <section id="header-top__search">
         <form action="#" method="get">
-            <input type="text" name="s" placeholder="Pesquisar produto..."/>
+            <input type="text" name="s" placeholder="Pesquisar produto..." />
             <button>
-                <img src=# alt="Lupa" title="Pesquisar"/>
+                <img th:src="'/assets/images-statics/'+ ${foto2}+'.png'" alt="Lupa" title="Pesquisar" />
             </button>
         </form>
     </section>
     <section id="header-top__links">
-        <a href="#">Cadastre-se</a>
-        <a href="#">Entrar</a>
+        <a th:href="${link2}">Cadastre-se</a>
+        <a th:href="${link3}">Entrar</a>
     </section>
     <section id="header-top__cart">
-        <a href="#" data-value="2">
-            <img th:src="@{../static/images/cart.png}" alt="Carrinho" title="Carrinho" src="/images/cart.png"/>
+        <a th:href="${link1}" th:data-value = "${cont}">
+            <img th:src="'/assets/images-statics/' + ${foto3}+'.png'" alt="Carrinho" title="Carrinho" />
         </a>
     </section>
+</header>
+
+
+<header id="header-top2" th:fragment="header-notSearch(foto1,foto2,foto3,cont,link1,link2,link3)">
+    <section id="header-top__logo2">
+        <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="Logomarca do sistema" />
+    </section>
+
 </header>
 
 <!-- CODIGO HTML DO BANNER  -->
@@ -44,32 +51,32 @@
 
     <section id="items">
         <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
         </div>
         <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
-        </div>
-
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
-        </div>
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
-        </div>
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
         </div>
 
         <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
+        </div>
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
+        </div>
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
         </div>
 
         <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
         </div>
 
         <div>
-            <th:block th:insert="~{/fragments/commons :: item(img)}"></th:block>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
+        </div>
+
+        <div>
+            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
         </div>
     </section>
 </section>
@@ -77,11 +84,12 @@
 
 
 
-<!-- CODIGO HTML DO ITEM DO EM ALTA  -->
+<!-- CODIGO HTML DO ITEM DO EM ALTA nao conseegui ainda  -->
 
 <div th:fragment="item(img)" id="item">
     <div id="boxImage discount" data-discount="30% OFF">
-        <img th:src="${img}"  alt="Emalta">
+
+        <img  alt="Emalta" th:src="${static/images/tenis.png}">
     </div>
     <span id="category">Tênis</span>
     <h2 id="productName">K-Swiss V8 - Masculino</h2>
@@ -94,22 +102,22 @@
 
 <!-- CODIGO HTML DO FOOTER  -->
 
-<footer th:fragment="footer" id="container-footer">
+<footer th:fragment="footer(logofooter,face,insta,twitter)" id="container-footer">
 
     <div id="container-columns">
         <div id="column1">
             <div id="digital-store">
-                <img id="logo-footer" src="#"/>
-                <h1>Digital Store</h1>
+                    <img th:src="'/assets/images-statics/' + ${logofooter}+'.png'" id="logo-footer" />
+                <h1></h1>
             </div>
             <div id="footer-lorem">
                     <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore.</span>
             </div>
             <div id="social-media">
-                <a><img src="#" /></a>
-                <a><img src="#" /></a>
-                <a><img src="#" /> </a>
+                <a><img th:src="'/assets/images-statics/' + ${face}+'.png'" /></a>
+                <a><img th:src="'/assets/images-statics/' + ${insta}+'.png'" /></a>
+                <a><img th:src="'/assets/images-statics/' + ${twitter}+'.png'" /></a>
             </div>
         </div>
         <div id="column2">

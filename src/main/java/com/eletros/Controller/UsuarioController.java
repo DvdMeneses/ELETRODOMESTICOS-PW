@@ -17,6 +17,7 @@ public class UsuarioController {
         this.service = service;
     }
 
+
     @GetMapping("/doCadastrarUsuario")
     public String getCadastrarUserPage(Model model) {
         Usuario u = new Usuario();
@@ -33,12 +34,7 @@ public class UsuarioController {
         return "redirect:/index";
     }
 
-    @GetMapping("/listUsuario")
-    public String listAll(Model model) {
-        List<Usuario> usuarioList = service.listAll();
-        model.addAttribute("usuarioList",usuarioList);
-        return "listUsuario";
-    }
+
 
 }
 

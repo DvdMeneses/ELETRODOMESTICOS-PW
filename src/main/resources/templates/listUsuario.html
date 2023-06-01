@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Listar todos os Usuarios</title>
+    <link th:href="@{'/css/estilos.css'}" type="text/css" rel="stylesheet">
+
 </head>
 <body>
+<div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login')"></div>
+
 
   <table>
     <tr th:each="Usuario: ${usuarioList}">

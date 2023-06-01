@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
+    <link th:href="@{'/css/estilos.css'}" type="text/css" rel="stylesheet">
+
 </head>
 <body>
+<div th:replace="/fragments/commons :: header-notSearch(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login')"></div>
+
     <form method="post" th:action="@{/doSalvar}" th:object="${eletros}">
 
         <input type="hidden" th:field="*{id}">
@@ -23,5 +27,8 @@
         <button type ="submit">Editar</button>
 
     </form>
+
+<div th:replace="/fragments/commons :: footer(logo-footer,face-footer,insta-footer,twitter-footer)"></div>
+
 </body>
 </html>

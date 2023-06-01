@@ -19,12 +19,14 @@ public class SecurityConfig{
         return http
                 .authorizeHttpRequests(auth -> {
 
+                    auth.requestMatchers("/adminPage").hasAnyAuthority("ROLE_ADMIN");
+                    auth.requestMatchers("/editarPage/**").hasAnyAuthority("ROLE_ADMIN");
                     auth.anyRequest().permitAll();
                 })
                 .formLogin( login -> login.loginPage("/login").permitAll())
                 //.defaultSuccessUrl("/", true)
                 //.and()
-                .logout( logout -> logout.logoutUrl("/login"))
+                .logout( logout -> logout.logoutUrl("/logout"))
                 //.and()
                 .build();
     }

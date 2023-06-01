@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Pagina de Cadastro</title>
-    
-    
+    <link th:href="@{'/css/estilos.css'}" type="text/css" rel="stylesheet">
+
+
+
 </head>
 <body>
+<div th:replace="/fragments/commons :: header-notSearch(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login')"></div>
+
 <h1>Cadastrar Eletrodomestico</h1>
     <form method ="post" th:action="@{/doSalvar}" th:object="${eletros}" enctype="multipart/form-data">
 
@@ -35,6 +39,8 @@
         <button type ="submit">Cadastrar</button>
 
     </form>
+<div th:replace="/fragments/commons :: footer(logo-footer,face-footer,insta-footer,twitter-footer)"></div>
+
 
 </body>
 </html>
