@@ -11,7 +11,7 @@
 <!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO ISSO É PARA O ADMIN -->
 <!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO com  ISSO É PARA O ADMIN -->
 <div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login','/index')"></div>
-
+  <p th:text="${mensagem}"></p>
   <table>
     <tr th:each="eletros: ${eletrosList}">
       <td th:text="${eletros.id}"></td>
