@@ -10,7 +10,7 @@
 <body>
 <!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO ISSO É PARA O ADMIN -->
 <!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO com  ISSO É PARA O ADMIN -->
-<div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login')"></div>
+<div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login','/index')"></div>
 
   <table>
     <tr th:each="eletros: ${eletrosList}">
