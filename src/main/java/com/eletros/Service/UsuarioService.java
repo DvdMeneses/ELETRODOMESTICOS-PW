@@ -1,5 +1,6 @@
 package com.eletros.Service;
 
+import com.eletros.Model.Eletros;
 import com.eletros.Model.Usuario;
 import com.eletros.Repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +15,8 @@ import java.util.Optional;
 public class UsuarioService implements UserDetailsService {
 
     UsuarioRepository repository;
-    BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
+
 
     public UsuarioService(UsuarioRepository repository, BCryptPasswordEncoder encoder) {
         this.repository = repository;
