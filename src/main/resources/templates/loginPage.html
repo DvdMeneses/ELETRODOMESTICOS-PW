@@ -9,11 +9,22 @@
 <div th:replace="/fragments/commons :: notSearch(logo,'/index')"></div>
 
 <p th:text="${mensagem}"></p>
+<div id="container">
+  <form th:action="@{/validar}" method="post">
+    <p>
+      <label for="username"></label>
+      <input id="username" type="text" name="username" placeholder="Username">
+    </p>
 
-<form th:action="@{/validar}" method="post">
-  <input type="text" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
-  <button type="submit">Enviar</button>
-</form>
+    <p>
+      <label for="password"></label>
+      <input id="password" type="password" name="password" placeholder="Password">
+    </p>
+
+
+    <button type="submit">Enviar</button>
+  </form>
+</div>
+
 </body>
 </html>

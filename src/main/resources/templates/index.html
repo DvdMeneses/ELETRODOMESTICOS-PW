@@ -4,38 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{'/css/estilos.css'}" type="text/css" rel="stylesheet">
-
+    <script th:src="@{/js/script.js}" defer></script>
 
 </head>
 <body>
-<!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO ISSO É PARA O user -->
+    <!--MOSTRANDO TODOS OS ELEMENTOS CADASTRADOS NO BANCO ISSO É PARA O user -->
 
-<div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login','/index')"></div>
-
-
-
-<p th:text="${mensagem}"></p>
-
-<table>
-    <tr th:each="eletros: ${eletrosList}" th:if="${eletros.deletado == null}">
-        <td th:text="${eletros.id}"></td>
-        <td th:text="${eletros.tipo}"></td>
-        <td th:text="${eletros.preco}"></td>
-        <td th:text="${eletros.marca}"></td>.
-        <td th:text="${eletros.descricao}"></td>
-
-        <td><img th:src="@{'/images/img-uploads/'+*{eletros.imageUri}}" style="width:100px" ></td>
-        <td><a  th:href="@{'addCarrinho/' + ${eletros.id}}">ADDCARRINHO</a></td>
-        <td><a  th:href="@{'/verCarrinho'}">VERCARRINHO</a></td>
-        <td><a  th:href="@{'/finalizarCompra'}">finalizar compras</a></td>
-    </tr>
+    <div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login','/index')"></div>
 
 
-    <button  th:text="${'CARRINHO : '+ contador}" style="border-radius:20px"></button>
 
-</table>
+    <p th:text="${mensagem}"></p>
 
-<div th:replace="/fragments/commons :: footer(logo-footer,face-footer,insta-footer,twitter-footer)"></div>
+        <table>
+            <div th:replace="/fragments/commons :: Emalta(${eletrosList},'index')"></div>
+        </table>
+
+    <div th:replace="/fragments/commons :: footer(logo-footer,face-footer,insta-footer,twitter-footer)"></div>
 
 
 

@@ -10,14 +10,7 @@
 <div th:replace="/fragments/commons :: notSearch(logo,'/index')"></div>
 
 <table>
-    <tr th:each="eletros:${carrinho}">
-        <td th:text="${eletros.id}"></td>
-        <td th:text="${eletros.tipo}"></td>
-        <td th:text="${eletros.preco}"></td>
-        <td th:text="${eletros.marca}"></td>
-        <td th:text="${eletros.descricao}"></td>
-        <td><img th:src="@{'/images/img-uploads/'+*{eletros.imageUri}}"></td>
-    </tr>
+    <div th:replace="/fragments/commons :: Emalta(${carrinho},'carrinho')"></div>
 </table>
 
 </body>
