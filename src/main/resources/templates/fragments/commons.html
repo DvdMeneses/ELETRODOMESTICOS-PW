@@ -4,10 +4,10 @@
 
 
 <!-- CODIGO HTML DO HEADER  -->
-<header id="header-top" th:fragment="header(foto1,foto2,foto3,cont,link1,link2,link3)">
-    <section id="header-top__logo">
+<header id="header-top" th:fragment="header(foto1,foto2,foto3,cont,link1,link2,link3,link4)">
+    <a th:href="${link4}" id="header-top__logo">
         <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="Logomarca do sistema" />
-    </section>
+    </a>
     <section id="header-top__search">
         <form action="#" method="get">
             <input type="text" name="s" placeholder="Pesquisar produto..." />
@@ -28,15 +28,14 @@
 </header>
 
 
-<header id="header-top2" th:fragment="header-notSearch(foto1,foto2,foto3,cont,link1,link2,link3)">
-    <section id="header-top__logo2">
-        <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="Logomarca do sistema" />
-    </section>
 
-</header>
 
 <!-- CODIGO HTML DO BANNER  -->
-
+<section id="top2" th:fragment="notSearch(foto1,linkindex)">
+    <a th:href="${linkindex}" id="top2__logo2">
+        <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="a do sistema" />
+    </a>
+</section>
 
 
 
