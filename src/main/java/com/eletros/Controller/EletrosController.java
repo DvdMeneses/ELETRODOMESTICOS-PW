@@ -40,8 +40,11 @@ public class EletrosController {
         public String getIndex (Model model, HttpServletRequest request) {
         List<Eletros> EletrosList = service.findAll();
         HttpSession sessao = request.getSession();
-
-        model.addAttribute("contador",sessao.getAttribute("contador"));
+        var contador =sessao.getAttribute("contador");
+        if(contador == null){
+            contador = 0;
+        }
+        model.addAttribute("contador",contador);
         model.addAttribute("eletrosList", EletrosList);
         return "index.html";
     }
@@ -156,6 +159,7 @@ public class EletrosController {
 
 
     }
+
 
 
 

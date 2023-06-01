@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <body>
 
 
@@ -30,9 +30,9 @@
 
 
 
-<!-- CODIGO HTML DO BANNER  -->
+<!-- CODIGO HTML DO header not search  -->
 <section id="top2" th:fragment="notSearch(foto1,linkindex)">
-    <a th:href="${linkindex}" id="top2__logo2">
+    <a th:href="${linkindex}" id="top2__logo2" >
         <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="a do sistema" />
     </a>
 </section>
@@ -42,42 +42,29 @@
 
 <!-- CODIGO HTML DO EM ALTA  -->
 
-<section th:fragment="Emalta(img)" id="EmAlta">
-    <div id="title">
-        <h1>Produtos em alta</h1>
-        <a className="link" href="#">Ver todos  -></a>
-    </div>
+<section th:fragment="Emalta(eletrosList,test)" id="EmAlta" >
 
-    <section id="items">
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
+        <div id="title" th:if="${test =='index'}">
+            <h1 >Produtos em alta</h1>
+
         </div>
 
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
+        <section  id="items" >
+                <div  id="item"   th:each="eletros : ${eletrosList}"  th:if="${eletros.deletado == null}" >
+                    <div id="boxImage">
+                        <img th:src="@{'/images/img-uploads/'+*{eletros.imageUri}}" >
+                    </div>
+                    <span id="category" th:text="${eletros.tipo}"></span>
 
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
+                    <div id="price">
+                        <h3>R$</h3>
+                        <h3 th:text="${eletros.preco}" th:value="${eletros.preco}"></h3>
+                        <a th:if="${test =='index'}" th:href="@{'addCarrinho/' + ${eletros.id}}"><button id="add_cart">+</button></a>
+                    </div>
+                </div>
+        </section>
 
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
 
-        <div>
-            <th:block th:insert="~{/fragments/commons :: item(${img})}"></th:block>
-        </div>
-    </section>
 </section>
 
 
@@ -85,18 +72,7 @@
 
 <!-- CODIGO HTML DO ITEM DO EM ALTA nao conseegui ainda  -->
 
-<div th:fragment="item(img)" id="item">
-    <div id="boxImage discount" data-discount="30% OFF">
 
-        <img  alt="Emalta" th:src="${static/images/tenis.png}">
-    </div>
-    <span id="category">Tênis</span>
-    <h2 id="productName">K-Swiss V8 - Masculino</h2>
-    <div id="price">
-        <h3>$200</h3>
-        <h3>$100</h3>
-    </div>
-</div>
 
 
 <!-- CODIGO HTML DO FOOTER  -->
@@ -163,16 +139,42 @@
     </p>
 </div>
 
-<div th:fragment="statusUsuario(status)">
-    <p>
-        <span th:if="${status == 'NOVO'}">Bem vindo</span>
-        <span th:unless="${status == 'NOVO'}">Voltou!</span>
-    </p>
-</div>
 
 <div th:fragment="displayNome(nome)">
     <p th:text="${nome} ?: 'ANÔNIMO'"></p>
 </div>
+
+
+<!-- CODIGO HTML DO INPUT DE CADASTRO  -->
+<section th:fragment="inputCadastro(eletros,linkSalvar,eletrostipo,eletrospreco,eletrosmarca,eletrosdescricao)">
+    <h1>Cadastrar Eletrodomestico</h1>
+
+    <form method="post" th:action="${linkSalvar}" th:object="${eletros}" enctype="multipart/form-data">
+
+        Tipo: <input type="text" th:field="${eletrostipo}">
+        <p th:if="${#fields.hasErrors('tipo')}" th:errors="${eletrostipo}"></p>
+        <br />
+
+        Preço: <input type="text" th:field="${eletrospreco}">
+        <p th:if="${#fields.hasErrors('preco')}" th:errors="${eletrospreco}"></p>
+        <br />
+
+        Marca: <input type="text" th:field="${eletrosmarca}">
+        <p th:if="${#fields.hasErrors('marca')}" th:errors="${eletrosmarca}"></p>
+        <br />
+
+        Descrição: <input type="text" th:field="${eletrosdescricao}">
+        <p th:if="${#fields.hasErrors('descricao')}" th:errors="${eletrosdescricao}"></p>
+        <br />
+
+        Imagem: Foto: <input type="file" name="file">
+        <br />
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</section>
+
+
 
 </body>
 </html>

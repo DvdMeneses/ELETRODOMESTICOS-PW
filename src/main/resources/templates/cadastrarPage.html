@@ -10,35 +10,44 @@
 </head>
 <body>
 <div th:replace="/fragments/commons :: notSearch(logo,'/index')"></div>
+<div id="container" >
+    <h1>
+        Cadastrar Eletrodomestico
+    </h1>
+    <div id="cadastro">
+        <form    method ="post" th:action="@{/doSalvar}" th:object="${eletros}" enctype="multipart/form-data">
+            <h1>Cadastro</h1>
 
-<h1>Cadastrar Eletrodomestico</h1>
-    <form method ="post" th:action="@{/doSalvar}" th:object="${eletros}" enctype="multipart/form-data">
+            <p>
+                <label for="tipoEletro"></label>
+                <input id="tipoEletro" name="tipoEletro" required="required" type="text" placeholder="nome"  th:field="*{tipo}"/>
+            </p>
 
-        Tipo: <input type="text" th:field="*{tipo}">
-        <p th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></p>
-        <br />
+            <p>
+                <label for="precoEletro"> </label>
+                <input id="precoEletro" name="precoEletro" required="required" type="text" placeholder="2.000"  th:field="*{preco}"/>
+            </p>
 
-        Preço: <input type="text" th:field="*{preco}">
-        <p th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></p>
-        <br />
+            <p>
+                <label for="marcaEletro"></label>
+                <input id="marcaEletro" name="marcaEletro" required="required" type="text" placeholder="acer" th:field="*{marca}"/>
+            </p>
 
-        Marca: <input type="text" th:field="*{marca}">
-        <p th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></p>
-        <br />
+            <p>
+                <label for="descricaoEletro"></label>
+                <input id="descricaoEletro" name="descricaoEletro" required="required" type="text" placeholder="descricao" th:field="*{descricao}"/>
+            </p>
 
-        Descrição: <input type="text" th:field="*{descricao}">
-        <p th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></p>
-        <br />
-
-        Imagem:  Foto: <input type="file" name="file">
-
+           Foto: <input type="file" name="file">
 
 
-        <br />
+            <br />
 
-        <button type ="submit">Cadastrar</button>
+            <button type ="submit">Cadastrar</button>
+        </form>
+    </div>
 
-    </form>
+</div>
 <div th:replace="/fragments/commons :: footer(logo-footer,face-footer,insta-footer,twitter-footer)"></div>
 
 
