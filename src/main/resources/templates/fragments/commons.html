@@ -35,6 +35,9 @@
     <a th:href="${linkindex}" id="top2__logo2" >
         <img th:src="'/assets/images-statics/' + ${foto1}+'.png'" alt="Digital Store" title="a do sistema" />
     </a>
+    <br />
+
+
 </section>
 
 
@@ -42,7 +45,7 @@
 
 <!-- CODIGO HTML DO EM ALTA  -->
 
-<section th:fragment="Emalta(eletrosList,test)" id="EmAlta" >
+<section th:fragment="Emalta(eletrosList,test,finalizar)" id="EmAlta" >
 
         <div id="title" th:if="${test =='index'}">
             <h1 >Produtos em alta</h1>
@@ -59,7 +62,8 @@
                     <div id="price">
                         <h3>R$</h3>
                         <h3 th:text="${eletros.preco}" th:value="${eletros.preco}"></h3>
-                        <a th:if="${test =='index'}" th:href="@{'addCarrinho/' + ${eletros.id}}"><button id="add_cart">+</button></a>
+                        <a th:if="${test =='index'}" th:href="@{'addCarrinho/' + ${eletros.id}}" ><button id="add_cart">+</button></a>
+                        <a th:unless="${test =='index'}" th:href="${finalizar}" ><button id="add_cart2">FINALIZAR COMPRA</button></a>
                     </div>
                 </div>
         </section>
@@ -67,10 +71,6 @@
 
 </section>
 
-
-
-
-<!-- CODIGO HTML DO ITEM DO EM ALTA nao conseegui ainda  -->
 
 
 

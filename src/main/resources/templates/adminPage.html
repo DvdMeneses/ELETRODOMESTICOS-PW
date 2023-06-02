@@ -13,7 +13,7 @@
 <div th:replace="/fragments/commons :: header(logo,search,cart,${contador},'/verCarrinho','/doCadastrarUsuario','/login','/index')"></div>
   <p th:text="${mensagem}"></p>
   <table>
-    <tr th:each="eletros: ${eletrosList}">
+    <tr th:each="eletros: ${eletrosList}" th:if="${eletros.deletado == null}">
       <td th:text="${eletros.id}"></td>
       <td th:text="${eletros.tipo}"></td>
       <td th:text="${eletros.preco}"></td>

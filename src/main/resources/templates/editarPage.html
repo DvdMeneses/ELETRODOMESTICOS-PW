@@ -9,24 +9,40 @@
 <body>
 <div th:replace="/fragments/commons :: notSearch(logo,'/index')"></div>
 
-    <form method="post" th:action="@{/doSalvar}" th:object="${eletros}">
+<form    method ="post" th:action="@{/doSalvar}" th:object="${eletros}" enctype="multipart/form-data">
+    <h1>EDITAR</h1>
+    <p>
+        <label for="idEletro"></label>
+        <input id="idEletro" name="idEletro" required="required" type="hidden" th:field="*{id}"/>
+    </p>
+    <p>
+        <label for="tipoEletro"></label>
+        <input id="tipoEletro" name="tipoEletro" required="required" type="text" placeholder="TIPO"  th:field="*{tipo}"/>
+    </p>
 
-        <input type="hidden" th:field="*{id}">
+    <p>
+        <label for="precoEletro"> </label>
+        <input id="precoEletro" name="precoEletro" required="required" type="text" placeholder="R$ 2.000"  th:field="*{preco}"/>
+    </p>
 
-        Tipo: <input type="text" th:field="*{tipo}">
-        <br />
+    <p>
+        <label for="marcaEletro"></label>
+        <input id="marcaEletro" name="marcaEletro" required="required" type="text" placeholder="MARCA" th:field="*{marca}"/>
+    </p>
 
-        Preço: <input type="number" th:field="*{preco}">
-        <br />
+    <p>
+        <label for="descricaoEletro"></label>
+        <input id="descricaoEletro" name="descricaoEletro" required="required" type="text" placeholder="DESCRIÇÃO" th:field="*{descricao}"/>
+    </p>
 
-        Marca: <input type="text" th:field="*{marca}">
-        <br />
+    Foto: <input type="file" name="file">
 
-        Descrição: <input type="text" th:field="*{descricao}">
-            <br />
-        <button type ="submit">Editar</button>
 
-    </form>
+
+    <br />
+
+    <button type ="submit">Cadastrar</button>
+</form>
 
 <div th:replace="/fragments/commons :: footer(logo-footer,face-footer,insta-footer,twitter-footer)"></div>
 
