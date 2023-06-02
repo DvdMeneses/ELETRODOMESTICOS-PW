@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.random.RandomGenerator;
 
 @Controller
 public class EletrosController {
@@ -67,14 +68,16 @@ public class EletrosController {
 
     @PostMapping("/doSalvar")
     public String doSalvar(@ModelAttribute @Valid Eletros e, @RequestParam(name = "file") MultipartFile file, Errors errors, RedirectAttributes x) {
+        var eletro = Math.random();// para concatenar no nome do file
+
         if (errors.hasErrors()) {
             x.addFlashAttribute("mensagem","Não foi possivel salvar :(");
             return "cadastrarPage";
         } else {
 
-            String fileName = file.getOriginalFilename();
+            String fileName = eletro+file.getOriginalFilename();
             e.setImageUri(fileName );
-            this.fileStorageService.save(file);
+            this.fileStorageService.save(file,fileName);
             service.save(e);
             x.addFlashAttribute("mensagem","salvo com sucesso!");
             return "redirect:/adminPage";
@@ -83,17 +86,21 @@ public class EletrosController {
 
 
 
+
+
     @GetMapping("/editarPage/{id}")
     public String getEditarPage(@PathVariable (name = "id") String id, Model model, RedirectAttributes x){
-        Optional<Eletros> E = service.findById(id);
-        System.out.println(E.getClass());
-            if (E.isPresent()) {
-                model.addAttribute("eletros", E.get());
-                x.addFlashAttribute("mensagem","Não foi possivel salvar :(");
+        Optional<Eletros> E = service.findById(id);//recebo o objeto que quero editar
 
-            }
+        if (E.isPresent()) {
 
-            return "editarPage";
+            model.addAttribute("eletros", E.get());//passo o objeto como parametro
+            model.addAttribute("file", E.get().getImageUri());//indico que vim do editar
+            x.addFlashAttribute("mensagem","Não foi possivel salvar :(");
+
+        }
+
+        return "editarPage";//retorno ele para o editar page
     }
 
     @GetMapping("/doDeletar/{id}")

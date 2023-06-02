@@ -21,6 +21,10 @@ public class EletrosService {
         repository.save(e);
     }
 
+    public Eletros getEletroById(Long id){
+        return repository.getReferenceById(id);
+    }
+
     public List<Eletros> findAll(){
         return repository.findAll();
     }

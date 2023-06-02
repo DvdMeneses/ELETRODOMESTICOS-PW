@@ -5,29 +5,31 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.Customizer;
 
+import java.util.ArrayList;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig{
-
+public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> {
-
-                    auth.requestMatchers("/adminPage").hasAnyAuthority("ROLE_ADMIN");
-                    auth.requestMatchers("/editarPage/**").hasAnyAuthority("ROLE_ADMIN");
+                    auth.requestMatchers("/cadastrarPage").hasRole("ADMIN");
+                    auth.requestMatchers("/editarPage/**").hasRole("ADMIN");
+                    auth.requestMatchers("/adminPage").hasRole("ADMIN");
+                    auth.requestMatchers("/verCarrinhoPage").hasRole("USER");
                     auth.anyRequest().permitAll();
                 })
-                .formLogin( login -> login.loginPage("/login").permitAll())
-                //.defaultSuccessUrl("/", true)
-                //.and()
-                .logout( logout -> logout.logoutUrl("/logout"))
-                //.and()
+                .formLogin(Customizer.withDefaults())
+                .logout(Customizer.withDefaults())
                 .build();
     }
 
@@ -36,9 +38,7 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder();
     }
 
-
-        /*
-    @Bean
+   /* @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails user = User.withUsername("user")
                 .password("{noop}password")
