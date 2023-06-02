@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<div th:replace="/fragments/commons :: notSearch(logo,'/index')"></div>
+<div th:replace="/fragments/commons :: notSearch(logo,'/index') "></div>
 
 <form    method ="post" th:action="@{/doSalvar}" th:object="${eletros}" enctype="multipart/form-data">
     <h1>EDITAR</h1>
